@@ -241,16 +241,21 @@ const arr = [
 const container = document.getElementById('productContainer');
 
 arr.forEach(product => {
-    const card = document.createElement('div');
-    card.className = 'product-card';
+    const col = document.createElement('div');
+    col.className = 'col-md-3 mb-4';
 
-    card.innerHTML = `
-        <img src="${product.image}" alt="${product.title}">
-        <h3>${product.title}</h3>
-        <p>${product.description}</p>
-        <div class="price">₹${product.price}</div>
-        <div class="rating">⭐ ${product.rating.rate} (${product.rating.count} reviews)</div>
+    col.innerHTML = `
+        <div class="card h-100 shadow-sm border-0">
+            <img src="${product.image}" class="card-img-top p-3" alt="${product.title}" 
+                 style="height:200px; object-fit:contain;">
+            <div class="card-body d-flex flex-column">
+                <h5 class="card-title text-truncate" title="${product.title}">${product.title}</h5>
+                <p class="card-text text-danger fw-bold mb-1">$ ${product.price}</p>
+                <p class="card-text text-secondary mb-3">⭐${product.rating.rate} (${product.rating.count} reviews)</p>
+                <button class="btn btn-primary mt-3 mt-auto">Add to Cart</button>
+            </div>
+        </div>
     `;
 
-    container.appendChild(card);
+    container.appendChild(col);
 });
